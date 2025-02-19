@@ -9,7 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+// Importamos las clases Scanner y Arrays.
 import java.util.Scanner;
+import java.util.Arrays;
 
 // Inicializamos la clase.
 public class TheatreTest {
@@ -68,10 +71,8 @@ public class TheatreTest {
         Theatre theatre = new Theatre(3, 3, scanner);
 
         // Marcamos la totalidad de asientos como ocupados ('X').
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                theatre.seats[i][j] = 'X';
-            }
+        for (char[] row : theatre.seats) {
+            Arrays.fill(row, 'X');
         }
 
         // Comprobamos que el método isFullyBooked() devuelve true cuando la totalidad de asientos están ocupados.
