@@ -19,6 +19,7 @@ public class Main {
                     Seleccione un número de ejercicio a ejecutar:
                         1 -> Ejercicio cajero
                         2 -> Ejercicio temperaturas
+                        3 -> Ejercicio reserva de asientos
                         0 -> Salir
                 """
         );
@@ -38,6 +39,14 @@ public class Main {
                 System.out.println("Array de temperaturas: " + Arrays.toString(temps));
                 WeatherStation weatherStation = new WeatherStation();
                 weatherStation.calculateAvgTemp(temps);
+                break;
+            case 3:
+                Theatre theatre = new Theatre(5, 5, scanner);
+
+                while (!theatre.isFullyBooked()) {
+                    theatre.bookingSeat();
+                }
+
                 break;
             default:
                 System.out.println("Opción no válida.");
