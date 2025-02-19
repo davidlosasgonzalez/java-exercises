@@ -14,6 +14,6 @@ public class WeatherStation {
             total += temp;
         }
 
-        System.out.printf(Locale.US,"Temperatura semanal media: %.1fºC", total / tempArr.length);
+        System.out.printf(Locale.US,"Temperatura semanal media: %.1fºC%n", total / tempArr.length);
     }
 }

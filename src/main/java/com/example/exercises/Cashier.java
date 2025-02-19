@@ -45,6 +45,6 @@ public class Cashier {
         scanner.close();
 
         // Importante indicar "Locale.US" para que el valor decimal aparezca con punto.
-        System.out.printf(Locale.US, "Total de la compra: %.2f€", total);
+        System.out.printf(Locale.US, "Total de la compra: %.2f€%n", total);
     }
 }

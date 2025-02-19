@@ -1,24 +1,48 @@
 # Ejercicios Java
 
-## Ejercicio 1 - Precio Total
+Este proyecto contiene una colección de ejercicios sencillos en **Java** que cubren diferentes conceptos básicos del lenguaje, como estructuras de control, arreglos y manipulación de datos por consola.
 
-Imagina que eres un cajero en un supermercado. Crea un programa en Java que permita ingresar el precio de varios productos comprados por un cliente.
+## Requisitos previos
 
-Utiliza una estructura repetitiva (la que quieras) para continuar pidiendo precios hasta que el usuario decida finalizar. Luego, muestra el total de la compra que debe abonar.
+Asegúrate de tener instalados:
 
-## Ejercicio 2 - Temperatura Media
-Una web de meteorología necesita de un programa que, al ingresar un array con 7 temperaturas, calcule la temperatura promedio que hubo.
+- **Java 17 o superior**: [https://adoptium.net/](https://adoptium.net/)
+- **Maven**: [https://maven.apache.org/](https://maven.apache.org/)
 
-Para ello, deberá manejar un vector donde en cada posición se almacene la correspondiente temperatura media de cada día. Una vez almacenadas las temperaturas, deberá calcular el promedio de las mismas recorriendo el vector y mostrando el resultado por pantalla.
+## Estructura del proyecto
 
-## Ejercicio 3 - Reserva De Asientos
-Imagina que estás trabajando en un sistema de reservas de asientos para un teatro. Crea un programa en Java que represente un mapa de asientos en una matriz de 5x5 y ten en cuenta lo siguiente:
+El proyecto está organizado de la siguiente manera:
 
-- Los asientos pueden estar ocupados (representados por "X") o vacíos (representados por "O").
+- **`src/`**: Contiene el código fuente de los ejercicios.
+- **`README.md`**: Este archivo, que documenta el uso y propósito del proyecto.
+- **`pom.xml`**: Archivo de configuración de Maven.
 
-- Permite al usuario ingresar por teclado donde quiere sentarse, indicando su fila y número de asiento (por ejemplo, "Fila 3, Asiento 2"). El programa debe marcar como ocupado ese asiento solo en caso de que esté vacío.
+## Uso
 
-- Si el asiento elegido por el usuario está ocupado, el sistema debe informar que elija otro diferente.
+### 1. Compilar el proyecto
+Ejecuta el siguiente comando para compilar el proyecto con Maven:
+```bash
+mvn clean install
+```
 
-A medida que los asientos se ocupen, el programa debe actualizar el mapa de asientos y mostrarlo por pantalla luego de cada reserva. El sistema deberá seguir corriendo hasta que el encargado de cargar las reservas de los asientos determine que ha finalizado.
+### 2. Ejecutar la aplicación
+La clase principal `Main` contiene un `Scanner` y un `switch` que permite seleccionar el ejercicio a ejecutar. Para iniciar la aplicación, usa el siguiente comando:
+```bash
+mvn exec:java
+```
+
+Una vez ejecutado, el programa pedirá que ingreses el número del ejercicio que deseas correr.
+
+## Ejercicios disponibles
+
+### Ejercicio 1 - Precio Total
+Permite ingresar el precio de varios productos hasta que el usuario decida finalizar. Luego, muestra el total de la compra.
+
+### Ejercicio 2 - Temperatura Media
+Calcula la temperatura promedio a partir de un array de 7 valores ingresados por el usuario.
+
+### Ejercicio 3 - Reserva De Asientos
+Simula un sistema de reservas de asientos en un teatro, permitiendo al usuario seleccionar asientos disponibles y mostrando un mapa actualizado.
+
+Cada ejercicio se ejecuta de manera independiente a través de la clase `Main` y su respectiva selección en el `switch`.
 
