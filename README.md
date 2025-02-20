@@ -92,4 +92,14 @@ Estás trabajando en un sistema de reservas de asientos para un teatro. Crea un 
 - A medida que los asientos se ocupen, el programa debe actualizar el mapa de asientos y mostrarlo por pantalla luego de cada reserva.
 - El sistema deberá seguir corriendo hasta que el encargado de cargar las reservas de los asientos determine que ha finalizado.
 
+---
 
+### Ejercicio 4 - Personas
+
+Crear una clase **Persona**, que tenga los siguientes atributos: id, nombre, edad, dirección y número de teléfono.
+
+- a) Crear un vector de tipo **Persona** con cinco posiciones. Crear cinco personas y guárdarlas en él.
+
+- b) Recorrer el vector creado y mostrar por pantalla el nombre y edad de cada persona almacenada.
+
+- c) Recorrer el vector y mostrar por pantalla únicamente a las personas cuya edad sea mayor de 30 años.
