@@ -103,3 +103,30 @@ Crear una clase **Persona**, que tenga los siguientes atributos: id, nombre, eda
 - b) Recorrer el vector creado y mostrar por pantalla el nombre y edad de cada persona almacenada.
 
 - c) Recorrer el vector y mostrar por pantalla únicamente a las personas cuya edad sea mayor de 30 años.
+
+### Ejercicio 5 - Gestión de una Fábrica de Coches
+
+Una fábrica de automóviles necesita un sistema para gestionar la producción de diferentes modelos de coches. Se requiere modelar la estructura de producción utilizando **herencia, polimorfismo, encapsulamiento, interfaces y estructuras de datos dinámicas**.
+
+Diseñar un sistema que permita definir un coche genérico y derivar modelos concretos con características propias, asegurando la correcta gestión de mantenimiento y producción.
+
+1. **Clase Base:** Crear una clase `Car` con los siguientes atributos:
+    - `id`
+    - `brand`
+    - `model`
+    - `year`
+
+2. **Subclases:** Crear modelos específicos de coches que extiendan `Car`, como:
+    - `OpelAstra`
+    - `CitroenXsara`
+    - `FordFocus`
+
+Cada modelo puede tener atributos adicionales como `fuelConsumption`, `engineType` o `batteryRange` (en caso de coches eléctricos).
+
+3. **Interfaz:** Implementar `Maintenance`, con el método `performInspection()`, que cada modelo implementará de manera distinta según su tipo de motor.
+
+4. **Programa Principal (`main()`):**
+    - Crear distintos modelos de coche con sus características específicas.
+    - Almacenarlos en un `ArrayList<Car>`.
+    - Recorrer la lista y mostrar la información de cada coche aplicando **polimorfismo**.
+    - Si el coche implementa `Maintenance`, ejecutar su método `performInspection()`.

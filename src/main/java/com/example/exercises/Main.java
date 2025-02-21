@@ -1,12 +1,8 @@
 // Indicamos el paquete.
 package com.example.exercises;
 
-// Importar la clase Scanner para leer la entrada del usuario.
-import java.time.LocalDate;
-import java.time.Period;
+// Importamos las clases necesarias.
 import java.util.Scanner;
-
-// Importar la clase Arrays.
 import java.util.Arrays;
 
 // Clase principal.
@@ -23,6 +19,7 @@ public class Main {
                         2 -> Ejercicio temperaturas
                         3 -> Ejercicio reserva de asientos
                         4 -> Ejercicio personas
+                        5 -> Ejercicio fábrica automóviles
                         0 -> Salir
                 """
         );
@@ -61,7 +58,7 @@ public class Main {
                 // Creamos una instancia.
                 Theatre theatre = new Theatre(5, 5, scanner);
 
-                // Solicitamos reservas hasta que todos los asientos esten llenos,
+                // Solicitamos reservas hasta que el total de los asientos esten llenos.
                 while (!theatre.isFullyBooked()) {
                     theatre.bookingSeat();
                 }
@@ -112,10 +109,54 @@ public class Main {
 
                 // Mostramos toda la info de las personas filtradas.
                 for (Person person : personsOver30) {
-                    person.getFullInfo();
+                    System.out.println(person);
                 }
 
                 break;
+
+            // Opción para visualizar el quinto ejercicio.
+            case 5:
+                // Array para almacenar los coches.
+                Car[] cars = new Car[5];
+
+                // Array de valores para generar los coches (2 diésel, 1 gasolina, 2 eléctricos).
+                String[] brands = {"Opel", "Ford", "Toyota", "Tesla", "Nissan"};
+                String[] models = {"Astra", "Focus", "Corolla", "Model 3", "Leaf"};
+                int[] years = {2021, 2019, 2020, 2023, 2022};
+                boolean[] maintenances = {false, true, false, false, true };
+
+                // Solo para vehículos de combustión.
+                double[] fuelConsumptions = {5.6, 6.2, 7.5};
+                String[] engineTypes = {"Diesel", "Diesel", "Gasoline"};
+
+                // Solo para vehículos eléctricos.
+                double[] batteryRanges = {500, 400};
+                int[] batteryCapacities = {75, 60};
+
+                // Creamos las instancias y las almacenamos en el array.
+                for (int i = 0; i < cars.length; i++) {
+                    // Los tres primeros vehículos son de combustión.
+                    if (i < 3) {
+                        cars[i] = new CombustionCar(brands[i], models[i], years[i], maintenances[i], fuelConsumptions[i], engineTypes[i]);
+                    } else { // Los dos últimos son eléctricos
+                        cars[i] = new ElectricCar(brands[i], models[i], years[i], maintenances[i], batteryRanges[i - 3], batteryCapacities[i - 3]);
+                    }
+                }
+
+                // Mostramos info de cada coche.
+                for (Car car : cars) {
+                    System.out.println(car.toString());
+                }
+
+                // Realizamos la inspección a los vehículos que lo necesiten.
+                for (Car car : cars) {
+                    if (car.maintenance && car instanceof Maintenance maintenanceCar) {
+                        maintenanceCar.performInspection();
+                    }
+                }
+
+                break;
+
             default:
                 System.out.println("Opción no válida.");
                 break;

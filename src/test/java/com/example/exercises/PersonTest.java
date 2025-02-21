@@ -15,32 +15,31 @@ import java.time.LocalDate;
 // Inicializamos la clase.
 public class PersonTest {
     @Test
-    public void testPersonCreation_ValidAge() {
+    public void testPersonCreation() {
         String name = "Dani";
-        String birthDate = "1980-10-05";
+        String validBirthDate = "1980-10-05";
+        String invalidBirthDate = "1900-01-01";
         String address = "Calle Real, 2, A Coruña";
         String phone = "+34 609 456 543";
 
-        Person person = new Person(name, birthDate, address, phone);
+        // Crear una persona con datos válidos
+        Person person = new Person(name, validBirthDate, address, phone);
 
-        // Verificar que la persona se crea correctamente
-        assertNotNull(person);
-        assertEquals(name, person.name);
-        assertEquals(LocalDate.parse(birthDate), person.birthDate);
-        assertEquals(address, person.address);
-        assertEquals(phone, person.phone);
-    }
+        // Intentar crear una persona con un año de nacimiento inválido
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                new Person(name, invalidBirthDate, address, phone)
+        );
 
-    @Test
-    public void testPersonCreation_InvalidAgeThrowsException() {
-        String name = "Dani";
-        String invalidBirthDate = "2024-02-10"; // Persona menor de 18 años
-        String address = "Calle Real, 2, A Coruña";
-        String phone = "+34 609 456 543";
-
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Person(name, invalidBirthDate, address, phone));
-
-        assertEquals("La edad debe estar entre 18 y 100 años.", exception.getMessage());
+        // Agrupar todas las validaciones con assertAll
+        assertAll("Validar la creación de la persona",
+                () -> assertNotNull(person, "La persona no debería ser nula."),
+                () -> assertEquals(name, person.name, "El nombre debería coincidir."),
+                () -> assertEquals(LocalDate.parse(validBirthDate), person.birthDate, "La fecha de nacimiento debería coincidir."),
+                () -> assertEquals(address, person.address, "La dirección debería coincidir."),
+                () -> assertEquals(phone, person.phone, "El teléfono debería coincidir."),
+                () -> assertEquals("La edad debe estar entre 18 y 100 años.", exception.getMessage(),
+                        "El mensaje de excepción debería indicar el error correctamente.")
+        );
     }
 
     @Test
@@ -52,11 +51,11 @@ public class PersonTest {
         LocalDate edgeCase100 = LocalDate.now().minusYears(100);
 
         assertAll("Validar edades",
-                () -> assertTrue(Person.isValidAge(validBirthDate), "Debe ser válido (43 años)."),
-                () -> assertFalse(Person.isValidAge(invalidBirthDateYoung), "Debe ser inválido (< 18 años)."),
-                () -> assertFalse(Person.isValidAge(invalidBirthDateOld), "Debe ser inválido (> 100 años)."),
-                () -> assertTrue(Person.isValidAge(edgeCase18), "Debe ser válido (justo 18 años)."),
-                () -> assertTrue(Person.isValidAge(edgeCase100), "Debe ser válido (justo 100 años).")
+                () -> assertTrue(Person.isValidAge(validBirthDate), "Debe ser válido."),
+                () -> assertFalse(Person.isValidAge(invalidBirthDateYoung), "Debe ser inválido."),
+                () -> assertFalse(Person.isValidAge(invalidBirthDateOld), "Debe ser inválido."),
+                () -> assertTrue(Person.isValidAge(edgeCase18), "Debe ser válido."),
+                () -> assertTrue(Person.isValidAge(edgeCase100), "Debe ser válido.")
         );
     }
 
@@ -99,7 +98,7 @@ public class PersonTest {
     }
 
     @Test
-    public void getFullInfoTest () {
+    public void toStringTest () {
         // Guardamos la referencia original de System.out para restaurarla después.
         PrintStream originalOut = System.out;
 
@@ -116,7 +115,7 @@ public class PersonTest {
 
         Person person = new Person(name, birthDate, address, phone);
 
-        person.getFullInfo();
+        System.out.println(person.toString().trim());
 
         // Restauramos System.out a su valor original para no afectar otros tests.
         System.setOut(originalOut);

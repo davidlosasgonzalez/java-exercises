@@ -71,9 +71,10 @@ public class Person {
         );
     }
 
-    // Método que imprime los datos de la persona al completo en formato JSON.
-    public void getFullInfo() {
-        System.out.printf(
+    // Sobrescribe el método toString para devolver los datos de la persona en formato JSON.
+    @Override
+    public String toString() {
+        return String.format(
                 """
                 {
                     "id": "%s",
